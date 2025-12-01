@@ -1,0 +1,25 @@
+name: GluA2
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python == 3.10
+  - dataclasses
+  - matplotlib
+  - notebook
+  - numpy
+  - pandas
+  - pip
+  - scikit-image
+  - scipy
+  - seaborn
+  - shapely
+  - statsmodels
+  - scikit-posthocs
+  - pingouin
+  - git
+  - pip:
+    - opencv-python
+    - black
+    - rasterio
+    - -e.

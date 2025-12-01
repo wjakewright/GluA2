@@ -1,0 +1,5 @@
+setup.py
+GluA2.egg-info/PKG-INFO
+GluA2.egg-info/SOURCES.txt
+GluA2.egg-info/dependency_links.txt
+GluA2.egg-info/top_level.txt
