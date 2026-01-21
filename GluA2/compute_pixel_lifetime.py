@@ -14,8 +14,8 @@ def compute_pixel_lifetime(image_file):
 
     """
     # Constants for calibration
-    PULSE_CORRECTION = 67.7
-    PULSE_SLOPE = 1169.1
+    PULSE_CORRECTION = 66.6
+    PULSE_SLOPE = 480.47
     CHASE_CORRECTION = 67.7
     CHASE_SLOPE = 1169.1
     TIME_CONSTANT = 3
