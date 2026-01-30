@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import json, re
 import numpy as np
@@ -115,3 +116,17 @@ def drop_branches(df: pd.DataFrame, superparent_label, recursive=True):
     # Final mask: drop immediate children of Fiber tracts AND any descendant IDs
     drop_mask = immediate_mask | d["orig_id"].isin(to_drop_ids)
     return d.loc[~drop_mask].reset_index(drop=True)
+
+
+def load_analyzed_data(mouse_list):
+    initial_path = r"Z:\People\Jake\Histology\GluA2"
+
+    loaded_data = []
+
+    for mouse in mouse_list:
+        fname = f"{mouse}_analyzed_data.pickle"
+        file_path = os.path.join(initial_path, mouse, "analyzed_data", fname)
+        data = pd.read_pickle(file_path)
+        loaded_data.append(data)
+
+    return loaded_data

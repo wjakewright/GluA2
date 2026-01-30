@@ -30,6 +30,7 @@ def analyze_images(
 
     # Iterate through each mouse seperately
     for mouse in mouse_list:
+        print(f"- Analyzing Mouse {mouse}")
         # Setup the paths to load the data from
         mouse_path = os.path.join(initial_path, mouse)
         image_file_path = os.path.join(mouse_path, "QProject", "exported_tiffs")
@@ -81,5 +82,7 @@ def analyze_images(
         # Save the data
         if save:
             save_path = os.path.join(mouse_path, "analyzed_data")
+            if not os.path.isdir(save_path):
+                os.makedirs(save_path)
             save_name = os.path.join(save_path, f"{mouse}_analyzed_data.pickle")
             combined_df.to_pickle(save_name)
