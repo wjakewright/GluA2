@@ -141,7 +141,7 @@ major_hypothalamus_areas = {
     "MPO": "Medial preoptic area",
     "PD": "Posterodorsal preoptic nucleus",
     "PS": "Parastrial nucleus",
-    "PVp": "Paraventricular nucleus",
+    "PVp": "Posterior Paraventricular nucleus",
     "SBPV": "Subparaventricular zone",
     "SCH": "Suprachiasmatic nucleus",
     "SFO": "Subfornical organ",

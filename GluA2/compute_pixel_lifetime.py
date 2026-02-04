@@ -14,7 +14,7 @@ def compute_pixel_lifetime(image_file):
 
     """
     # Constants for calibration
-    PULSE_CORRECTION = 66.6
+    PULSE_CORRECTION = 66.68
     PULSE_SLOPE = 480.47
     CHASE_CORRECTION = 67.7
     CHASE_SLOPE = 1169.1
@@ -30,8 +30,8 @@ def compute_pixel_lifetime(image_file):
     pulse_norm = normalize_image(pulse_image, PULSE_CORRECTION, PULSE_SLOPE)
 
     # Get rid of negative values in empty space
-    chase_norm[chase_norm < 0] = 0
-    pulse_norm[pulse_norm < 0] = 0
+    chase_norm[chase_norm < 0] = np.nan
+    pulse_norm[pulse_norm < 0] = np.nan
 
     # Calculate the fraction ratio
     total_protein = chase_norm + pulse_norm
@@ -39,11 +39,17 @@ def compute_pixel_lifetime(image_file):
 
     # Add small value to ensure no division by zero error
     fraction_ratio_corrected = fraction_ratio + eps
+    # fraction_ratio[fraction_ratio == 0] = np.nan
+    fraction_ratio[~np.isfinite(fraction_ratio)] = np.nan
+
+    fraction = pulse_norm / fraction_ratio_corrected
+    # fraction[fraction == 0] = np.nan
+    fraction[~np.isfinite(fraction)] = np.nan
 
     # Calculate the lifetime
-    lifetime = np.absolute(TIME_CONSTANT / (np.log(1 / fraction_ratio_corrected)))
+    lifetime = np.absolute(TIME_CONSTANT / (np.log(1 / (fraction + eps))))
 
-    image_output = np.dstack([pulse_image, chase_image, lifetime])
+    image_output = np.dstack([pulse_norm, chase_norm, lifetime])
 
     return image_output
 

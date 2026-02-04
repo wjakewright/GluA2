@@ -126,6 +126,7 @@ def plot_grouped_bar_plot(
     dfs = []
     for key, value in data_dict.items():
         df = pd.DataFrame(value)
+
         df = df.melt(var_name="X", value_name="Y")
         df["Group"] = [key for _ in range(len(df))]
         dfs.append(df)
