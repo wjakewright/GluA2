@@ -287,7 +287,7 @@ def calculate_pixel_lifetime(pulse, chase, mask):
 def get_mean_masked_pixels(image, mask):
     masked_image = image[mask]
     all_pixels = masked_image.flatten()
-    mean_pixels = np.nanmean(all_pixels)
+    mean_pixels = np.nanmedian(all_pixels)
 
     return mean_pixels
 

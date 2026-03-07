@@ -47,7 +47,7 @@ major_cortical_areas = {
     "VISpm": "Posteromedial visual area",
     "ACA": "Anterior cingulate area",
     "PL": "Prelimbic",
-    "IL": "Infralimbic",
+    "ILA": "Infralimbic",
     "ORB": "Orbital area",
     "AI": "Angular insular area",
     "RSP": "Retrosplenial area",
@@ -71,7 +71,7 @@ major_olfactory_areas = {
 }
 
 major_hippocampal_areas = {
-    "CA1": "Field CA1",
+    "CA_1": "Field CA1",
     "CA2": "Field CA2",
     "CA3": "Field CA3",
     "DG": "Dentate gyrus",
@@ -204,7 +204,7 @@ def compare_raw_lifetimes(
         save_path - str specifying where to save the figure
 
     """
-    COLORS = ["lightgreen", "darkgreen"]
+    COLORS = ["silver", "mediumseagreen"]
 
     # Grab the data
     trained_macro_areas = collect_data_values(
@@ -299,14 +299,14 @@ def compare_raw_lifetimes(
         b_colors=COLORS,
         b_edgecolors="black",
         b_err_colors="black",
-        b_width=0.6,
-        gap=0.1,
+        b_width=0.7,
+        gap=0.2,
         b_linewidth=0,
-        b_alpha=0.3,
+        b_alpha=1,
         s_colors=COLORS,
         s_size=5,
         s_alpha=1,
-        plot_ind=True,
+        plot_ind=False,
         axis_width=1.5,
         minor_ticks="y",
         tick_len=3,
@@ -332,14 +332,14 @@ def compare_raw_lifetimes(
         b_colors=COLORS,
         b_edgecolors="black",
         b_err_colors="black",
-        b_width=0.6,
-        gap=0.1,
+        b_width=0.7,
+        gap=0.2,
         b_linewidth=0,
-        b_alpha=0.3,
+        b_alpha=1,
         s_colors=COLORS,
         s_size=5,
         s_alpha=1,
-        plot_ind=True,
+        plot_ind=False,
         axis_width=1.5,
         minor_ticks="y",
         tick_len=3,
@@ -365,14 +365,14 @@ def compare_raw_lifetimes(
         b_colors=COLORS,
         b_edgecolors="black",
         b_err_colors="black",
-        b_width=0.6,
-        gap=0.1,
+        b_width=0.7,
+        gap=0.2,
         b_linewidth=0,
-        b_alpha=0.3,
+        b_alpha=1,
         s_colors=COLORS,
         s_size=5,
         s_alpha=1,
-        plot_ind=True,
+        plot_ind=False,
         axis_width=1.5,
         minor_ticks="y",
         tick_len=3,
@@ -398,14 +398,14 @@ def compare_raw_lifetimes(
         b_colors=COLORS,
         b_edgecolors="black",
         b_err_colors="black",
-        b_width=0.6,
-        gap=0.1,
+        b_width=0.7,
+        gap=0.2,
         b_linewidth=0,
-        b_alpha=0.3,
+        b_alpha=1,
         s_colors=COLORS,
         s_size=5,
         s_alpha=1,
-        plot_ind=True,
+        plot_ind=False,
         axis_width=1.5,
         minor_ticks="y",
         tick_len=3,
@@ -431,14 +431,14 @@ def compare_raw_lifetimes(
         b_colors=COLORS,
         b_edgecolors="black",
         b_err_colors="black",
-        b_width=0.6,
-        gap=0.1,
+        b_width=0.7,
+        gap=0.2,
         b_linewidth=0,
-        b_alpha=0.3,
+        b_alpha=1,
         s_colors=COLORS,
         s_size=5,
         s_alpha=1,
-        plot_ind=True,
+        plot_ind=False,
         axis_width=1.5,
         minor_ticks="y",
         tick_len=3,
@@ -464,14 +464,14 @@ def compare_raw_lifetimes(
         b_colors=COLORS,
         b_edgecolors="black",
         b_err_colors="black",
-        b_width=0.6,
-        gap=0.1,
+        b_width=0.7,
+        gap=0.2,
         b_linewidth=0,
-        b_alpha=0.3,
+        b_alpha=1,
         s_colors=COLORS,
         s_size=5,
         s_alpha=1,
-        plot_ind=True,
+        plot_ind=False,
         axis_width=1.5,
         minor_ticks="y",
         tick_len=3,
@@ -497,14 +497,14 @@ def compare_raw_lifetimes(
         b_colors=COLORS,
         b_edgecolors="black",
         b_err_colors="black",
-        b_width=0.6,
-        gap=0.1,
+        b_width=0.7,
+        gap=0.2,
         b_linewidth=0,
-        b_alpha=0.3,
+        b_alpha=1,
         s_colors=COLORS,
         s_size=5,
         s_alpha=1,
-        plot_ind=True,
+        plot_ind=False,
         axis_width=1.5,
         minor_ticks="y",
         tick_len=3,
@@ -530,14 +530,14 @@ def compare_raw_lifetimes(
         b_colors=COLORS,
         b_edgecolors="black",
         b_err_colors="black",
-        b_width=0.6,
-        gap=0.1,
+        b_width=0.7,
+        gap=0.2,
         b_linewidth=0,
-        b_alpha=0.3,
+        b_alpha=1,
         s_colors=COLORS,
         s_size=5,
         s_alpha=1,
-        plot_ind=True,
+        plot_ind=False,
         axis_width=1.5,
         minor_ticks="y",
         tick_len=3,
@@ -563,14 +563,416 @@ def compare_raw_lifetimes(
         b_colors=COLORS,
         b_edgecolors="black",
         b_err_colors="black",
-        b_width=0.6,
-        gap=0.1,
+        b_width=0.7,
+        gap=0.2,
         b_linewidth=0,
-        b_alpha=0.3,
+        b_alpha=1,
         s_colors=COLORS,
         s_size=5,
         s_alpha=1,
-        plot_ind=True,
+        plot_ind=False,
+        axis_width=1.5,
+        minor_ticks="y",
+        tick_len=3,
+        x_rotation=45,
+        ax=axes["I"],
+        save=False,
+        save_path=None,
+    )
+
+    fig.tight_layout()
+
+    # Save section
+    if save:
+        if save_path is None:
+            save_path = r"C:\Users\Jake\Desktop\Figures"
+        if not os.path.isdir(save_path):
+            os.makedirs(save_path)
+        fname = os.path.join(save_path, title)
+        fig.savefig(fname + ".pdf")
+        fig.savefig(fname + ".svg")
+
+    # Statistics section
+    if not display_stats:
+        return
+
+
+def compare_relative_lifetimes(
+    untrained_data,
+    trained_data,
+    figsize=(15, 15),
+    display_stats=False,
+    save=False,
+    save_path=None,
+):
+    """
+    Figure to plot and compare the raw lifetime values across brain regions
+    for trained and untrained mice
+
+    INPUT PARAMETERS
+        untrained_data - list of pd.dataframe containing the analyzed image data
+                            for untrained mice
+
+        trained_data - list of pd.dataframe containing the analyzed image data
+                        for trained mice
+
+        figsize - tuple sepcifying how large to make the figure
+
+        display_stats - boolean specifying whether to perform stats
+
+        save - boolean specifying whether to save the figure
+
+        save_path - str specifying where to save the figure
+    """
+
+    color = ["mediumseagreen"]
+
+    # Grab the data
+    trained_macro_areas = collect_data_values(
+        trained_data, macro_areas, var_name="mean_lifetime"
+    )
+    untrained_macro_areas = collect_data_values(
+        untrained_data, macro_areas, var_name="mean_lifetime"
+    )
+    trained_cortical_areas = collect_data_values(
+        trained_data, major_cortical_areas, var_name="mean_lifetime"
+    )
+    untrained_cortical_areas = collect_data_values(
+        untrained_data, major_cortical_areas, var_name="mean_lifetime"
+    )
+    trained_olfactory_areas = collect_data_values(
+        trained_data, major_olfactory_areas, var_name="mean_lifetime"
+    )
+    untrained_olfactory_areas = collect_data_values(
+        untrained_data, major_olfactory_areas, var_name="mean_lifetime"
+    )
+    trained_hippocampal_areas = collect_data_values(
+        trained_data, major_hippocampal_areas, var_name="mean_lifetime"
+    )
+    untrained_hippocampal_areas = collect_data_values(
+        untrained_data, major_hippocampal_areas, var_name="mean_lifetime"
+    )
+    trained_subplate_areas = collect_data_values(
+        trained_data, cortical_subplate_areas, var_name="mean_lifetime"
+    )
+    untrained_subplate_areas = collect_data_values(
+        untrained_data, cortical_subplate_areas, var_name="mean_lifetime"
+    )
+    trained_forebrain_areas = collect_data_values(
+        trained_data, major_forebrain_nuclei, var_name="mean_lifetime"
+    )
+    untrained_forebrain_areas = collect_data_values(
+        untrained_data, major_forebrain_nuclei, var_name="mean_lifetime"
+    )
+    trained_thalamic_areas = collect_data_values(
+        trained_data, major_thalamic_areas, var_name="mean_lifetime"
+    )
+    untrained_thalamic_areas = collect_data_values(
+        untrained_data, major_thalamic_areas, var_name="mean_lifetime"
+    )
+    trained_hypothalamus_areas = collect_data_values(
+        trained_data, major_hypothalamus_areas, var_name="mean_lifetime"
+    )
+    untrained_hypothalamus_areas = collect_data_values(
+        untrained_data, major_hypothalamus_areas, var_name="mean_lifetime"
+    )
+    trained_midbrain_areas = collect_data_values(
+        trained_data, major_midbrain_areas, var_name="mean_lifetime"
+    )
+    untrained_midbrain_areas = collect_data_values(
+        untrained_data, major_midbrain_areas, var_name="mean_lifetime"
+    )
+
+    macro_relative = calculate_relative_values(
+        untrained_macro_areas, trained_macro_areas
+    )
+    cortical_relative = calculate_relative_values(
+        untrained_cortical_areas, trained_cortical_areas
+    )
+    hippocampal_relative = calculate_relative_values(
+        untrained_hippocampal_areas, trained_hippocampal_areas
+    )
+    subplate_relative = calculate_relative_values(
+        untrained_subplate_areas, trained_subplate_areas
+    )
+    forebrain_relative = calculate_relative_values(
+        untrained_forebrain_areas, trained_forebrain_areas
+    )
+    olfactory_relative = calculate_relative_values(
+        untrained_olfactory_areas, trained_olfactory_areas
+    )
+    thalamic_relative = calculate_relative_values(
+        untrained_thalamic_areas, trained_thalamic_areas
+    )
+    hypothalamic_relative = calculate_relative_values(
+        untrained_hypothalamus_areas, trained_hypothalamus_areas
+    )
+    midbrain_relative = calculate_relative_values(
+        untrained_midbrain_areas, trained_midbrain_areas
+    )
+
+    # Construct the subplots
+    fig, axes = plt.subplot_mosaic(
+        """
+        A
+        B
+        C
+        D
+        E
+        F
+        G
+        H
+        I
+        """,
+        figsize=figsize,
+    )
+
+    title = "Relative_GluA2_Lifetime"
+    fig.suptitle(title)
+    fig.subplots_adjust(wspace=0.5, hspace=1.0)
+
+    plot_bar_plot(
+        data_dict=macro_relative,
+        mean_type="mean",
+        err_type="sem",
+        figsize=(5, 5),
+        title="Major areas",
+        xtitle=None,
+        ytitle="Relative GluA2 lifetime (%)",
+        ylim=None,
+        b_colors=color,
+        b_edgecolors="black",
+        b_err_colors="black",
+        b_width=0.5,
+        b_linewidth=1,
+        b_alpha=1,
+        s_colors=color,
+        s_size=5,
+        s_alpha=1,
+        plot_ind=False,
+        axis_width=1.5,
+        minor_ticks="y",
+        tick_len=3,
+        x_rotation=45,
+        ax=axes["A"],
+        save=False,
+        save_path=None,
+    )
+
+    plot_bar_plot(
+        data_dict=cortical_relative,
+        mean_type="mean",
+        err_type="sem",
+        figsize=(5, 5),
+        title="Cortical areas",
+        xtitle=None,
+        ytitle="Relative GluA2 lifetime (%)",
+        ylim=None,
+        b_colors=color,
+        b_edgecolors="black",
+        b_err_colors="black",
+        b_width=0.5,
+        b_linewidth=1,
+        b_alpha=1,
+        s_colors=color,
+        s_size=5,
+        s_alpha=1,
+        plot_ind=False,
+        axis_width=1.5,
+        minor_ticks="y",
+        tick_len=3,
+        x_rotation=45,
+        ax=axes["B"],
+        save=False,
+        save_path=None,
+    )
+
+    plot_bar_plot(
+        data_dict=hippocampal_relative,
+        mean_type="mean",
+        err_type="sem",
+        figsize=(5, 5),
+        title="Hippocampal areas",
+        xtitle=None,
+        ytitle="Relative GluA2 lifetime (%)",
+        ylim=None,
+        b_colors=color,
+        b_edgecolors="black",
+        b_err_colors="black",
+        b_width=0.5,
+        b_linewidth=1,
+        b_alpha=1,
+        s_colors=color,
+        s_size=5,
+        s_alpha=1,
+        plot_ind=False,
+        axis_width=1.5,
+        minor_ticks="y",
+        tick_len=3,
+        x_rotation=45,
+        ax=axes["C"],
+        save=False,
+        save_path=None,
+    )
+
+    plot_bar_plot(
+        data_dict=subplate_relative,
+        mean_type="mean",
+        err_type="sem",
+        figsize=(5, 5),
+        title="Cortical subplate areas",
+        xtitle=None,
+        ytitle="Relative GluA2 lifetime (%)",
+        ylim=None,
+        b_colors=color,
+        b_edgecolors="black",
+        b_err_colors="black",
+        b_width=0.5,
+        b_linewidth=1,
+        b_alpha=1,
+        s_colors=color,
+        s_size=5,
+        s_alpha=1,
+        plot_ind=False,
+        axis_width=1.5,
+        minor_ticks="y",
+        tick_len=3,
+        x_rotation=45,
+        ax=axes["D"],
+        save=False,
+        save_path=None,
+    )
+
+    plot_bar_plot(
+        data_dict=forebrain_relative,
+        mean_type="mean",
+        err_type="sem",
+        figsize=(5, 5),
+        title="Forebrain nuclei",
+        xtitle=None,
+        ytitle="Relative GluA2 lifetime (%)",
+        ylim=None,
+        b_colors=color,
+        b_edgecolors="black",
+        b_err_colors="black",
+        b_width=0.5,
+        b_linewidth=1,
+        b_alpha=1,
+        s_colors=color,
+        s_size=5,
+        s_alpha=1,
+        plot_ind=False,
+        axis_width=1.5,
+        minor_ticks="y",
+        tick_len=3,
+        x_rotation=45,
+        ax=axes["E"],
+        save=False,
+        save_path=None,
+    )
+
+    plot_bar_plot(
+        data_dict=olfactory_relative,
+        mean_type="mean",
+        err_type="sem",
+        figsize=(5, 5),
+        title="Olfactory areas",
+        xtitle=None,
+        ytitle="Relative GluA2 lifetime (%)",
+        ylim=None,
+        b_colors=color,
+        b_edgecolors="black",
+        b_err_colors="black",
+        b_width=0.5,
+        b_linewidth=1,
+        b_alpha=1,
+        s_colors=color,
+        s_size=5,
+        s_alpha=1,
+        plot_ind=False,
+        axis_width=1.5,
+        minor_ticks="y",
+        tick_len=3,
+        x_rotation=45,
+        ax=axes["F"],
+        save=False,
+        save_path=None,
+    )
+
+    plot_bar_plot(
+        data_dict=thalamic_relative,
+        mean_type="mean",
+        err_type="sem",
+        figsize=(5, 5),
+        title="Thalamic areas",
+        xtitle=None,
+        ytitle="Relative GluA2 lifetime (%)",
+        ylim=None,
+        b_colors=color,
+        b_edgecolors="black",
+        b_err_colors="black",
+        b_width=0.5,
+        b_linewidth=1,
+        b_alpha=1,
+        s_colors=color,
+        s_size=5,
+        s_alpha=1,
+        plot_ind=False,
+        axis_width=1.5,
+        minor_ticks="y",
+        tick_len=3,
+        x_rotation=45,
+        ax=axes["G"],
+        save=False,
+        save_path=None,
+    )
+
+    plot_bar_plot(
+        data_dict=hypothalamic_relative,
+        mean_type="mean",
+        err_type="sem",
+        figsize=(5, 5),
+        title="Hypothalamic areas",
+        xtitle=None,
+        ytitle="Relative GluA2 lifetime (%)",
+        ylim=None,
+        b_colors=color,
+        b_edgecolors="black",
+        b_err_colors="black",
+        b_width=0.5,
+        b_linewidth=1,
+        b_alpha=1,
+        s_colors=color,
+        s_size=5,
+        s_alpha=1,
+        plot_ind=False,
+        axis_width=1.5,
+        minor_ticks="y",
+        tick_len=3,
+        x_rotation=45,
+        ax=axes["H"],
+        save=False,
+        save_path=None,
+    )
+    plot_bar_plot(
+        data_dict=midbrain_relative,
+        mean_type="mean",
+        err_type="sem",
+        figsize=(5, 5),
+        title="Midbrain areas",
+        xtitle=None,
+        ytitle="Relative GluA2 lifetime (%)",
+        ylim=None,
+        b_colors=color,
+        b_edgecolors="black",
+        b_err_colors="black",
+        b_width=0.5,
+        b_linewidth=1,
+        b_alpha=1,
+        s_colors=color,
+        s_size=5,
+        s_alpha=1,
+        plot_ind=False,
         axis_width=1.5,
         minor_ticks="y",
         tick_len=3,
@@ -627,7 +1029,8 @@ def calculate_relative_values(control_dict, exp_dict):
         # Average the control values
         ctl_avg = np.nanmean(value)
         # Calculate the percent difference
-        relative_diff = (np.array(exp_value) / ctl_avg) * 100
+        relative_diff = (ctl_avg / np.array(exp_value)) * 100
+        relative_diff = relative_diff - 100
         # Store the data
         relative_data[key] = relative_diff
 

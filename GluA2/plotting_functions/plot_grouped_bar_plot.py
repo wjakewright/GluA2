@@ -186,7 +186,7 @@ def plot_grouped_bar_plot(
     for tick in ax.get_xticklabels():
         tick.set_rotation(x_rotation)
 
-    ax.set_xmargin(0.15)
+    ax.set_xmargin(0.01)
     ticks = ax.get_yticks()
     bottom, top = get_axis_limit(ylim, ticks)
     ax.set_ylim(bottom=bottom, top=top)

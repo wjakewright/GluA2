@@ -18,16 +18,20 @@ def compute_pixel_lifetime(image_file):
     PULSE_SLOPE = 480.47
     CHASE_CORRECTION = 67.7
     CHASE_SLOPE = 1169.1
-    TIME_CONSTANT = 3
+    TIME_CONSTANT = 5
     eps = 1e-9  # small num to prevent inf
 
     # Seperate the image channels
     chase_image = image_file[:, :, 2]
     pulse_image = image_file[:, :, 3]
+    # auto_image = image_file[:, :, 1]
 
     # Normalize the images to concentration values
     chase_norm = normalize_image(chase_image, CHASE_CORRECTION, CHASE_SLOPE)
     pulse_norm = normalize_image(pulse_image, PULSE_CORRECTION, PULSE_SLOPE)
+    # auto_norm = normalize_image(auto_image, CHASE_CORRECTION, CHASE_SLOPE)
+
+    # chase_norm = chase_norm - auto_norm
 
     # Get rid of negative values in empty space
     chase_norm[chase_norm < 0] = np.nan
