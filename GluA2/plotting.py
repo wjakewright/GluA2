@@ -3,11 +3,15 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import scipy as sy
+
+from scipy import stats
 
 from collections import defaultdict
 
 from plotting_functions.plot_bar_plot import plot_bar_plot
 from plotting_functions.plot_grouped_bar_plot import plot_grouped_bar_plot
+from plotting_functions.plot_heatmap import plot_general_heatmap
 
 sns.set_style("ticks")
 
@@ -999,6 +1003,243 @@ def compare_relative_lifetimes(
         return
 
 
+def plot_interregion_correlations(
+    untrained_data,
+    trained_data,
+    figsize=(15, 15),
+    display_stats=False,
+    save=False,
+    save_path=None,
+):
+    """
+    Figure to correlate and plot changes in lifetimes across brain regions
+
+    INPUT PARAMETERS
+        untrained_data - list of pd.dataframe containing the analyzed image data
+                            for untrained mice
+
+        trained_data - list of pd.dataframe containing the analyzed image data
+                        for trained mice
+
+        figsize - tuple sepcifying how large to make the figure
+
+        display_stats - boolean specifying whether to perform stats
+
+        save - boolean specifying whether to save the figure
+
+        save_path - str specifying where to save the figure
+
+    """
+
+    trained_cortical_areas = collect_data_values(
+        trained_data, major_cortical_areas, var_name="mean_lifetime"
+    )
+    untrained_cortical_areas = collect_data_values(
+        untrained_data, major_cortical_areas, var_name="mean_lifetime"
+    )
+    trained_olfactory_areas = collect_data_values(
+        trained_data, major_olfactory_areas, var_name="mean_lifetime"
+    )
+    untrained_olfactory_areas = collect_data_values(
+        untrained_data, major_olfactory_areas, var_name="mean_lifetime"
+    )
+    trained_hippocampal_areas = collect_data_values(
+        trained_data, major_hippocampal_areas, var_name="mean_lifetime"
+    )
+    untrained_hippocampal_areas = collect_data_values(
+        untrained_data, major_hippocampal_areas, var_name="mean_lifetime"
+    )
+    trained_subplate_areas = collect_data_values(
+        trained_data, cortical_subplate_areas, var_name="mean_lifetime"
+    )
+    untrained_subplate_areas = collect_data_values(
+        untrained_data, cortical_subplate_areas, var_name="mean_lifetime"
+    )
+    trained_forebrain_areas = collect_data_values(
+        trained_data, major_forebrain_nuclei, var_name="mean_lifetime"
+    )
+    untrained_forebrain_areas = collect_data_values(
+        untrained_data, major_forebrain_nuclei, var_name="mean_lifetime"
+    )
+    trained_thalamic_areas = collect_data_values(
+        trained_data, major_thalamic_areas, var_name="mean_lifetime"
+    )
+    untrained_thalamic_areas = collect_data_values(
+        untrained_data, major_thalamic_areas, var_name="mean_lifetime"
+    )
+    trained_hypothalamus_areas = collect_data_values(
+        trained_data, major_hypothalamus_areas, var_name="mean_lifetime"
+    )
+    untrained_hypothalamus_areas = collect_data_values(
+        untrained_data, major_hypothalamus_areas, var_name="mean_lifetime"
+    )
+    trained_midbrain_areas = collect_data_values(
+        trained_data, major_midbrain_areas, var_name="mean_lifetime"
+    )
+    untrained_midbrain_areas = collect_data_values(
+        untrained_data, major_midbrain_areas, var_name="mean_lifetime"
+    )
+
+    cortical_relative = calculate_relative_values(
+        untrained_cortical_areas, trained_cortical_areas
+    )
+    hippocampal_relative = calculate_relative_values(
+        untrained_hippocampal_areas, trained_hippocampal_areas
+    )
+    subplate_relative = calculate_relative_values(
+        untrained_subplate_areas, trained_subplate_areas
+    )
+    forebrain_relative = calculate_relative_values(
+        untrained_forebrain_areas, trained_forebrain_areas
+    )
+    olfactory_relative = calculate_relative_values(
+        untrained_olfactory_areas, trained_olfactory_areas
+    )
+    thalamic_relative = calculate_relative_values(
+        untrained_thalamic_areas, trained_thalamic_areas
+    )
+    hypothalamic_relative = calculate_relative_values(
+        untrained_hypothalamus_areas, trained_hypothalamus_areas
+    )
+    midbrain_relative = calculate_relative_values(
+        untrained_midbrain_areas, trained_midbrain_areas
+    )
+
+    # Join the dictionaries
+    all_relative = {
+        **cortical_relative,
+        **hippocampal_relative,
+        **subplate_relative,
+        **forebrain_relative,
+        **olfactory_relative,
+        **thalamic_relative,
+        **hypothalamic_relative,
+        **midbrain_relative,
+    }
+
+    all_trained_areas = {
+        **trained_cortical_areas,
+        **trained_hippocampal_areas,
+        **trained_subplate_areas,
+        **trained_forebrain_areas,
+        **trained_olfactory_areas,
+        **trained_thalamic_areas,
+        **trained_hypothalamus_areas,
+        **trained_midbrain_areas,
+    }
+
+    all_untrained_areas = {
+        **untrained_cortical_areas,
+        **untrained_hippocampal_areas,
+        **untrained_subplate_areas,
+        **untrained_forebrain_areas,
+        **untrained_olfactory_areas,
+        **untrained_thalamic_areas,
+        **untrained_hypothalamus_areas,
+        **untrained_midbrain_areas,
+    }
+
+    # Perform the correlations
+    trained_correlations = correlate_relative_changes(all_trained_areas)
+
+    trained_sorted_correlations = cluster_array(trained_correlations)
+
+    untrained_correlations = correlate_relative_changes(all_untrained_areas)
+
+    untrained_sorted_correlations = cluster_array(trained_correlations)
+
+    relative_correlations = correlate_relative_changes(all_relative)
+
+    relative_sorted_correlations = cluster_array(relative_correlations)
+
+    # Construct the figure
+    fig, axes = plt.subplot_mosaic(
+        """
+        ABC
+        """,
+        figsize=figsize,
+    )
+
+    title = "GluA2_Lifetime_Correlations"
+    fig.suptitle(title)
+    fig.subplots_adjust(wspace=0.5, hspace=0.5)
+
+    # Plot the data
+    axes["A"].set_aspect(aspect="equal", adjustable="box")
+    plot_general_heatmap(
+        data=untrained_sorted_correlations,
+        figsize=(5, 5),
+        title="Untrained",
+        xtitle=None,
+        ytitle=None,
+        cbar_label="Lifetime change",
+        hmap_range=(0, 1),
+        center=None,
+        cmap="plasma",
+        axis_width=2.5,
+        minor_ticks=None,
+        tick_len=3,
+        annotate=False,
+        ax=axes["A"],
+        save=False,
+        save_path=None,
+    )
+    axes["B"].set_aspect(aspect="equal", adjustable="box")
+    plot_general_heatmap(
+        data=trained_sorted_correlations,
+        figsize=(5, 5),
+        title="Trained",
+        xtitle=None,
+        ytitle=None,
+        cbar_label="Lifetime change",
+        hmap_range=(0, 1),
+        center=None,
+        cmap="plasma",
+        axis_width=2.5,
+        minor_ticks=None,
+        tick_len=3,
+        annotate=False,
+        ax=axes["B"],
+        save=False,
+        save_path=None,
+    )
+    axes["C"].set_aspect(aspect="equal", adjustable="box")
+    plot_general_heatmap(
+        data=relative_sorted_correlations,
+        figsize=(5, 5),
+        title="Relative",
+        xtitle=None,
+        ytitle=None,
+        cbar_label="Lifetime change",
+        hmap_range=(0, 1),
+        center=None,
+        cmap="bwr",
+        axis_width=2.5,
+        minor_ticks=None,
+        tick_len=3,
+        annotate=False,
+        ax=axes["C"],
+        save=False,
+        save_path=None,
+    )
+
+    fig.tight_layout()
+
+    # Save section
+    if save:
+        if save_path is None:
+            save_path = r"C:\Users\Jake\Desktop\Figures"
+        if not os.path.isdir(save_path):
+            os.makedirs(save_path)
+        fname = os.path.join(save_path, title)
+        fig.savefig(fname + ".pdf")
+        fig.savefig(fname + ".svg")
+
+    # Statistics section
+    if not display_stats:
+        return
+
+
 def collect_data_values(data_list, roi_list, var_name):
     """Helper function to grab and organize the data"""
     # Set up dictionary to collect the data
@@ -1028,6 +1269,8 @@ def calculate_relative_values(control_dict, exp_dict):
         exp_value = exp_dict[key]
         # Average the control values
         ctl_avg = np.nanmean(value)
+        if np.isnan(ctl_avg):
+            ctl_avg = 0
         # Calculate the percent difference
         relative_diff = (ctl_avg / np.array(exp_value)) * 100
         relative_diff = relative_diff - 100
@@ -1035,3 +1278,50 @@ def calculate_relative_values(control_dict, exp_dict):
         relative_data[key] = relative_diff
 
     return relative_data
+
+
+def correlate_relative_changes(relative_dict):
+    """Helper function to correlate changes across brain regions"""
+
+    names = list(relative_dict.keys())
+
+    correlations = pd.DataFrame(columns=names, index=names)
+
+    for region1 in names:
+        for region2 in names:
+            value1 = np.array(relative_dict[region1])
+            value2 = np.array(relative_dict[region2])
+            if np.isnan(value1).all():
+                r = np.nan
+            elif np.isnan(value2).all():
+                r = np.nan
+            else:
+                value1[np.isnan(value1)] = 0.0
+                value2[np.isnan(value2)] = 0.0
+
+                r, _ = stats.spearmanr(value1, value2)
+            correlations.at[region1, region2] = r
+
+    return correlations
+
+
+def cluster_array(array):
+    """Helper function to cluster array data using hierarchical clustering"""
+
+    np_array = array.to_numpy().astype(float)
+
+    distances = sy.cluster.hierarchy.distance.pdist(np_array)
+    try:
+        linkage = sy.cluster.hierarchy.linkage(distances, method="complete")
+    except:
+        print(np_array)
+        print("")
+        print(distances)
+        raise
+    ind = sy.cluster.hierarchy.fcluster(linkage, 0.1 * distances.max(), "distance")
+
+    ordered_ind = np.argsort(ind)
+    sorted_array = pd.DataFrame(np_array)
+    sorted_array = sorted_array.iloc[ordered_ind, ordered_ind]
+
+    return sorted_array
